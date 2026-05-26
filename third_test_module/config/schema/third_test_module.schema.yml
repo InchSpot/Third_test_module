@@ -1,0 +1,4 @@
+block.settings.latest_third_test_block:
+  type: block_settings
+  label: 'Последние проекты block'
+  mapping: {}

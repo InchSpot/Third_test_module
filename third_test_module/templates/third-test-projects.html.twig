@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Шаблон блока «Последние проекты».
+ *
+ * Available variables:
+ * - title: Заголовок блока.
+ * - empty_message: Сообщение, если проектов нет.
+ * - projects: Массив проектов с ключами url, title, text, image_url, end_date.
+ */
+#}
+<div class="third-test-projects">
+  <h2>{{ title }}</h2>
+
+  {% if projects is empty %}
+    <p>{{ empty_message }}</p>
+  {% else %}
+    <div class="third-test-projects-list">
+      {% for project in projects %}
+        <div class="third-test-project-card">
+          {% if project.image_url %}
+            <img src="{{ project.image_url }}" alt="{{ project.title }}">
+          {% endif %}
+          <h3><a href="{{ project.url }}">{{ project.title }}</a></h3>
+          {% if project.text %}
+            <p>{{ project.text }}</p>
+          {% endif %}
+          {% if project.end_date %}
+            <p class="third-test-project-date">{{ 'Дата окончания: @date'|t({'@date': project.end_date}) }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,4 @@
+third_test_module_css:
+  css:
+    theme:
+      css/third_test_module.css: {}

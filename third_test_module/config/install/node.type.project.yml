@@ -1,0 +1,10 @@
+langcode: ru
+status: true
+dependencies: {  }
+name: 'Проект'
+type: project
+description: 'Проекты — кастомный тип контента.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

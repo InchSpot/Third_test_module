@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Install and update hooks for Third test module.
+ */
+
+/**
+ * Fixes broken block configs and removes obsolete block placements.
+ */
+function third_test_module_update_9001(): string {
+  $config_factory = \Drupal::configFactory();
+  $obsolete_plugins = [
+    'beginner_projects_block',
+    'latest_projects_simple_block',
+    'latest_projects_block',
+    'latest_second_test_block',
+  ];
+  $our_plugin = 'latest_third_test_block';
+
+  foreach ($config_factory->listAll('block.block.') as $config_name) {
+    $config = $config_factory->getEditable($config_name);
+    $plugin = $config->get('plugin');
+
+    if (in_array($plugin, $obsolete_plugins, TRUE)) {
+      $config->delete();
+      continue;
+    }
+
+    if ($plugin !== $our_plugin) {
+      continue;
+    }
+
+    if ($config->get('settings') === NULL) {
+      $config->set('settings', []);
+    }
+    if ($config->get('visibility') === NULL) {
+      $config->set('visibility', []);
+    }
+    if ($config->get('dependencies') === NULL) {
+      $config->set('dependencies', ['module' => ['third_test_module']]);
+    }
+    $config->save(TRUE);
+  }
+
+  return 'Third test module: fixed block configs (null settings/dependencies).';
+}
+
+/**
+ * Installs default configuration for sites upgraded from programmatic install.
+ */
+function third_test_module_update_9002(): string {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'third_test_module');
+  return 'Third test module: installed default configuration from config/install.';
+}

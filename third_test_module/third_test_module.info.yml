@@ -1,0 +1,11 @@
+name: 'Third test module'
+type: module
+description: 'Блок последних проектов. Тип «Проект» .'
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:node
+  - drupal:field
+  - drupal:text
+  - drupal:image
+  - drupal:datetime

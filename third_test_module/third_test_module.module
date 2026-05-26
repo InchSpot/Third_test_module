@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Хуки темы для модуля third_test_module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function third_test_module_theme($existing, $type, $theme, $path) {
+  return [
+    'third_test_projects' => [
+      'variables' => [
+        'projects' => [],
+        'title' => '',
+        'empty_message' => '',
+      ],
+      'template' => 'third-test-projects',
+    ],
+  ];
+}
